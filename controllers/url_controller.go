@@ -26,6 +26,7 @@ func NewUrl(w http.ResponseWriter, r *http.Request) {
 		hash := models.Create(url.Url)
 
 		redirectLink := utils.BaseUrl + "/" + hash
+
 		json.NewEncoder(w).Encode(redirectLink)
 	default:
 		http.Error(w, "Sorry, only POST method is supported.", http.StatusMethodNotAllowed)
@@ -50,6 +51,7 @@ func GetUrl(w http.ResponseWriter, r *http.Request) {
 				}
 				http.Redirect(w, r, url, http.StatusSeeOther)
 			}
+
 		} else {
 			http.Error(w, "Please inform a valid address.", http.StatusBadRequest)
 		}
