@@ -1,8 +1,10 @@
 package models
 
 import (
+	"database/sql"
 	"log"
 	"urlshortener/database"
+	"urlshortener/utils"
 
 	"github.com/speps/go-hashids/v2"
 )
@@ -13,7 +15,7 @@ type Url struct {
 	Hash string `json:"hash"`
 }
 
-func Create(url string) {
+func Create(url string) string {
 	query := "INSERT INTO urls (url) VALUES ($1) RETURNING id;"
 	var lastId int
 
@@ -23,7 +25,7 @@ func Create(url string) {
 	}
 
 	hd := hashids.NewData()
-	hd.Salt = "this is my salt"
+	hd.Salt = utils.Salt
 	h, _ := hashids.NewWithData(hd)
 	hash, _ := h.Encode([]int{lastId})
 
@@ -33,8 +35,18 @@ func Create(url string) {
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
+
+	return hash
 }
 
-func Retrieve(hash string) {
-
+func Retrieve(hash string) (string, error) {
+	var url string
+	err := database.DB.QueryRow("SELECT url FROM urls WHERE hash = $1", hash).Scan(&url)
+	if err != nil {
+		if err != sql.ErrNoRows {
+			log.Fatal(err)
+		}
+		return "", err
+	}
+	return url, nil
 }

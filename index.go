@@ -4,10 +4,11 @@ import (
 	"log"
 	"net/http"
 	"urlshortener/database"
+	"urlshortener/utils"
 )
 
 func main() {
 	database.Connect()
 	router()
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+utils.Port, nil))
 }

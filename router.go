@@ -6,5 +6,6 @@ import (
 )
 
 func router() {
+	http.HandleFunc("/", controllers.GetUrl)
 	http.HandleFunc("/new", controllers.NewUrl)
 }
