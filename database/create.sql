@@ -1,5 +1,5 @@
 CREATE TABLE urls (
   id SERIAL PRIMARY KEY,
-  url VARCHAR(255),
+  url VARCHAR(2048),
   hash VARCHAR(255)
 );
