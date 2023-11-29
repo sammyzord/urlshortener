@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+	internal.ConnectDB()
+
+	internal.DB.AutoMigrate(&internal.URL{})
+
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
 	router.GET("/", internal.HomepageHandler)
