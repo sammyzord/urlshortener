@@ -1,8 +1,45 @@
 <html>
-    <h1>URL Shortener</h1>
-	<form method="POST">
-    <label for="url">URL:</label><br>
-    <input type="text" id="url" name="url" placeholder="Paste the URL here"><br>
-    <input type="submit" value="Submit">
-</form> 
+    <head>
+        <title>URL Shortener</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐹</text></svg>">
+    </head>
+    <body>
+        <div class="container">
+            <div>
+                <h1 class="header">URL Shortener</h1>
+                <form method="POST">
+                    <label class="label" for="url">URL:</label><br>
+                    <input class="input" type="text" id="url" name="url" placeholder="Paste the URL here"><br>
+                    <input type="submit" value="Shorten">
+                </form> 
+            </div>
+        </div>
+    </body>
 </html>
+
+<style>
+    .header {
+        font-family: Arial, sans-serif;
+      
+    }
+
+    .label {
+        font-family: Arial, sans-serif;
+    }
+
+    .input {
+        width: 100%;
+        margin-top: 6px;
+        margin-bottom: 20px;
+        padding: 2px 2px 2px 2px;
+    }
+
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+
+</style>

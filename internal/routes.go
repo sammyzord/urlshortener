@@ -12,7 +12,10 @@ func HomepageHandler(context *gin.Context) {
 
 func UrlPostHandler(context *gin.Context) {
 	url := context.PostForm("url")
+
+	newUrl := shortenUrl(url)
+
 	context.HTML(http.StatusOK, "new-url.tmpl", gin.H{
-		"newUrl": url,
+		"newUrl": newUrl,
 	})
 }
