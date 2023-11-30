@@ -14,5 +14,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 	router.GET("/", internal.HomepageHandler)
 	router.POST("/", internal.UrlPostHandler)
+	router.GET("/:code", internal.RedirectHandler)
+
 	router.Run()
 }
